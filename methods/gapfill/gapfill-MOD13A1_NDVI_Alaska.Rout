@@ -1,0 +1,125 @@
+
+R version 3.5.0 (2018-04-23) -- "Joy in Playing"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> rm(list = ls())
+> library("gapfill")
+Loading required package: ggplot2
+--> See ?Gapfill and https://doi.org/10.1109/TGRS.2017.2785240 <--
+> library("doParallel")
+Loading required package: foreach
+Loading required package: iterators
+Loading required package: parallel
+> registerDoParallel(80)
+> 
+> load("../../datasets/MOD13A1_NDVI_Alaska/MOD13A1_NDVI_Alaska.RData")
+> 
+> out20 <- Gapfill(data = masked20,
++                  clipRange = c(0,1),
++                  dopar=TRUE,
++                  initialSize = c(10, 10, 1, 6))
+data has 480000 values: 387178 (81%) observed
+                         92822 (19%) missing
+                         92822 (19%) to predict
+started at 2018-09-28 22:52:22.
+elapsed time is 3.871 mins (0.0025 secs per NA).
+> 
+> out30 <- Gapfill(data = masked30,
++                  clipRange = c(0,1),
++                  dopar=TRUE,
++                  initialSize = c(10, 10, 1, 6))
+data has 480000 values: 332173 (69%) observed
+                        147827 (31%) missing
+                        147827 (31%) to predict
+started at 2018-09-28 22:56:14.
+elapsed time is 5.215 mins (0.00212 secs per NA).
+> 
+> out40 <- Gapfill(data = masked40,
++                  clipRange = c(0,1),
++                  dopar=TRUE,
++                  initialSize = c(10, 10, 1, 6))
+data has 480000 values: 287544 (60%) observed
+                        192456 (40%) missing
+                        192456 (40%) to predict
+started at 2018-09-28 23:01:27.
+elapsed time is 6.638 mins (0.00207 secs per NA).
+> 
+> out50 <- Gapfill(data = masked50,
++                  clipRange = c(0,1),
++                  dopar=TRUE,
++                  initialSize = c(10, 10, 1, 6))
+data has 480000 values: 239674 (50%) observed
+                        240326 (50%) missing
+                        240326 (50%) to predict
+started at 2018-09-28 23:08:05.
+elapsed time is 9.488 mins (0.00237 secs per NA).
+> 
+> sessionInfo()
+R version 3.5.0 (2018-04-23)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 16.04.5 LTS
+
+Matrix products: default
+BLAS: /usr/lib/atlas-base/libf77blas.so.3.0
+LAPACK: /usr/lib/atlas-base/atlas/liblapack.so.3.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=de_CH.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+[1] doParallel_1.0.11 iterators_1.0.9   foreach_1.4.4     gapfill_0.9.6    
+[5] ggplot2_3.0.0    
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_0.12.18       bindr_0.1.1        magrittr_1.5       maps_3.3.0        
+ [5] tidyselect_0.2.4   munsell_0.4.3      lattice_0.20-35    colorspace_1.3-2  
+ [9] R6_2.2.2           rlang_0.2.0        plyr_1.8.4         dplyr_0.7.6       
+[13] fields_9.6         dotCall64_0.9-5.2  grid_3.5.0         spam_2.2-0        
+[17] gtable_0.2.0       quantreg_5.36      withr_2.1.2        MatrixModels_0.4-1
+[21] lazyeval_0.2.1     assertthat_0.2.0   tibble_1.4.2       Matrix_1.2-14     
+[25] bindrcpp_0.2.2     purrr_0.2.4        codetools_0.2-15   glue_1.2.0        
+[29] compiler_3.5.0     pillar_1.2.1       scales_0.5.0       SparseM_1.77      
+[33] pkgconfig_2.0.1   
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> proc.time()
+     user    system   elapsed 
+67840.020  4176.240  1520.082 

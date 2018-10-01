@@ -1,0 +1,106 @@
+
+R version 3.5.0 (2018-04-23) -- "Joy in Playing"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> rm(list=ls())
+> library("gapfill")
+Loading required package: ggplot2
+--> See ?Gapfill and https://doi.org/10.1109/TGRS.2017.2785240 <--
+> ## change the default value for the argument 'asRaster' of Image().
+> ## See ?Image for information about the 'asRaster' argument. 
+> formals(Image)$asRaster <- FALSE 
+> 
+> ## load data
+> load("MOD13A1_NDVI_Alaska.RData")
+> 
+> ## plot the data
+> Image(observed, colbarTitle = "NDVI", xlab = "DOY", ylab = "Year") +
++     ggtitle("Observed")
+> Image(masked20, colbarTitle = "NDVI", xlab = "DOY", ylab = "Year") +
++     ggtitle("masked 20%")
+> Image(masked30, colbarTitle = "NDVI", xlab = "DOY", ylab = "Year") +
++     ggtitle("masked 30%")
+> Image(masked40, colbarTitle = "NDVI", xlab = "DOY", ylab = "Year") +
++     ggtitle("masked 40%")
+> Image(masked50, colbarTitle = "NDVI", xlab = "DOY", ylab = "Year") +
++     ggtitle("masked 50%")
+> 
+> ## meta data
+> head(metadata)
+                                   name.n
+10 MOD13A1.A2004145.500m_16_days_NDVI.tif
+11 MOD13A1.A2004161.500m_16_days_NDVI.tif
+12 MOD13A1.A2004177.500m_16_days_NDVI.tif
+13 MOD13A1.A2004193.500m_16_days_NDVI.tif
+14 MOD13A1.A2004209.500m_16_days_NDVI.tif
+15 MOD13A1.A2004225.500m_16_days_NDVI.tif
+                                                name.q year doy nrow  ncol
+10 MOD13A1.A2004145.500m_16_days_pixel_reliability.tif 2004 145 1014 18252
+11 MOD13A1.A2004161.500m_16_days_pixel_reliability.tif 2004 161 1014 18252
+12 MOD13A1.A2004177.500m_16_days_pixel_reliability.tif 2004 177 1014 18252
+13 MOD13A1.A2004193.500m_16_days_pixel_reliability.tif 2004 193 1014 18252
+14 MOD13A1.A2004209.500m_16_days_pixel_reliability.tif 2004 209 1014 18252
+15 MOD13A1.A2004225.500m_16_days_pixel_reliability.tif 2004 225 1014 18252
+     n.na  ratio.na
+10 236702 0.5642210
+11 208252 0.4964054
+12 194445 0.4634940
+13 256876 0.6123093
+14 190871 0.4549747
+15 187846 0.4477641
+> 
+> 
+> sessionInfo()
+R version 3.5.0 (2018-04-23)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 16.04.5 LTS
+
+Matrix products: default
+BLAS: /usr/lib/atlas-base/libf77blas.so.3.0
+LAPACK: /usr/lib/atlas-base/atlas/liblapack.so.3.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=de_CH.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] gapfill_0.9.6 ggplot2_3.0.0
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_0.12.18       pillar_1.2.1       compiler_3.5.0     plyr_1.8.4        
+ [5] bindr_0.1.1        iterators_1.0.9    tools_3.5.0        digest_0.6.15     
+ [9] dotCall64_0.9-5.2  tibble_1.4.2       gtable_0.2.0       lattice_0.20-35   
+[13] pkgconfig_2.0.1    rlang_0.2.0        Matrix_1.2-14      foreach_1.4.4     
+[17] SparseM_1.77       spam_2.2-0         bindrcpp_0.2.2     withr_2.1.2       
+[21] dplyr_0.7.6        stringr_1.3.0      MatrixModels_0.4-1 fields_9.6        
+[25] maps_3.3.0         grid_3.5.0         tidyselect_0.2.4   glue_1.2.0        
+[29] R6_2.2.2           purrr_0.2.4        reshape2_1.4.3     magrittr_1.5      
+[33] scales_0.5.0       codetools_0.2-15   assertthat_0.2.0   colorspace_1.3-2  
+[37] labeling_0.3       quantreg_5.36      stringi_1.1.7      lazyeval_0.2.1    
+[41] munsell_0.4.3     
+> 
+> proc.time()
+   user  system elapsed 
+ 28.664   0.820  30.187 
